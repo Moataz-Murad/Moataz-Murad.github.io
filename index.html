@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moataz Murad | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--primary-color); }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* Container */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+
+        /* Section Cards */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        h2 { color: var(--primary-color); margin-bottom: 20px; border-left: 5px solid var(--accent-color); padding-left: 15px; }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: var(--bg-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        /* Achievements */
+        .achievement-item {
+            padding: 15px;
+            border-right: 4px solid var(--accent-color);
+            background: #f9f9f9;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        footer { text-align: center; padding: 40px; color: #7f8c8d; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MM Portfolio</div>
+        <div style="font-size: 0.9rem; color: #666;">Dhamar, Yemen</div>
+    </nav>
+
+    <header class="hero">
+        <h1>Moataz Murad</h1>
+        <p>Architectural Engineering Student | Academic Leader</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="card">
+            <h2>Academic Excellence</h2>
+            <ul>
+                <li><strong>High School (Scientific):</strong> Al-Nasr School | <strong>94.75%</strong></li>
+                <li><strong>IT Diploma:</strong> Cecyal Center | <strong>96.8%</strong></li>
+                <li><strong>English Proficiency:</strong> Thamar University | <strong>94.74%</strong></li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Top Honors</h2>
+            <div class="achievement-item">
+                <strong>1st Place Winner:</strong> Thamar Governorate Scientific Competition (2025).
+            </div>
+            <div class="achievement-item">
+                <strong>Google Certified:</strong> Artificial Intelligence (AI) Essentials.
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">AutoCAD & Revit</div>
+                <div class="skill-item">3D Modeling</div>
+                <div class="skill-item">Python Coding</div>
+                <div class="skill-item">MS Office Expert</div>
+                <div class="skill-item">Photoshop Design</div>
+                <div class="skill-item">Project Leadership</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Social Impact</h2>
+            <p>Led a local community initiative to repair road infrastructure, directly benefiting over 50 families during the rainy season.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Moataz Murad. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
