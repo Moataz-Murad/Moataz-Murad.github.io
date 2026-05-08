@@ -1,108 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moataz Murad | Professional Portfolio</title>
+    <title>Moataz Murad | Professional Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #f4f7f6; --sidebar-color: #1a252f;
-            --accent-color: #3498db; --text-main: #2c3e50;
-            --card-bg: #ffffff; --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --primary: #d4af37; --secondary: #3498db; --dark: #05060a;
+            --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.08);
         }
-        * { box-sizing: border-box; }
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; background: var(--bg-color); color: var(--text-main); display: flex; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--dark); color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Sidebar - Classic Professional */
-        .sidebar { width: 280px; background: var(--sidebar-color); height: 100vh; position: fixed; color: white; padding: 30px 20px; z-index: 1000; transition: var(--transition); }
-        .sidebar h2 { font-size: 1.2rem; border-bottom: 1px solid #34495e; padding-bottom: 15px; margin-bottom: 30px; letter-spacing: 2px; }
-        .nav-link { display: flex; align-items: center; color: #bdc3c7; text-decoration: none; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; transition: var(--transition); font-weight: 500; }
-        .nav-link:hover, .nav-link.active { background: var(--accent-color); color: white; transform: translateX(5px); }
-        .nav-link i { margin-right: 15px; font-size: 1.1rem; }
+        /* Animated 3D Background */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
 
-        /* Main Content Area */
-        .content { margin-left: 280px; width: calc(100% - 280px); padding: 40px; transition: var(--transition); }
-        
-        /* Header Controls */
-        .top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; background: var(--card-bg); padding: 15px 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        /* Modern Glass Navbar */
+        nav {
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+            width: 95%; background: rgba(10, 11, 16, 0.8); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 50px;
+            padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+        }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: #aaa; text-decoration: none; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
+
+        /* Hero Header */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-family: 'Orbitron'; font-size: clamp(2rem, 8vw, 4.5rem); background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: #888; margin: 15px 0 30px; letter-spacing: 2px; }
+
+        /* Action Buttons */
         .btn-group { display: flex; gap: 15px; }
-        .btn { padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
-        .btn-lang { background: var(--text-main); color: white; }
-        .btn-download { background: var(--accent-color); color: white; text-decoration: none; font-size: 0.9rem; }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .main-btn { padding: 12px 30px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; font-weight: 900; transition: 0.4s; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+        .main-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
 
-        /* Grid Layout for Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-top: 4px solid var(--accent-color); transition: var(--transition); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card h3 { margin-top: 0; color: var(--sidebar-color); border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        
-        /* Skills Tags */
-        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-        .tag { background: #e1f0fa; color: #2980b9; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        /* Sections Grid */
+        section { padding: 100px 8%; }
+        .section-title { font-size: 2.2rem; margin-bottom: 40px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+        .section-title::after { content: ''; height: 2px; flex-grow: 1; background: linear-gradient(to right, var(--primary), transparent); }
 
-        /* Arabic Support */
-        [lang="ar"] { direction: rtl; text-align: right; }
-        [lang="ar"] .sidebar { right: 0; left: auto; }
-        [lang="ar"] .content { margin-right: 280px; margin-left: 0; }
-        [lang="ar"] .nav-link i { margin-right: 0; margin-left: 15px; }
-        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: 0.5s; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(255,255,255,0.06); }
+        .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; color: #fff; }
+        .card p { color: #bbb; line-height: 1.7; font-size: 0.95rem; }
+        .card .tag { display: inline-block; background: rgba(212, 175, 55, 0.15); color: var(--primary); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; margin: 5px 2px; font-weight: bold; }
+
+        /* Footer */
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); color: #555; }
+
+        /* Language & LTR Support */
+        body.en { direction: ltr; text-align: left; font-family: 'Orbitron', sans-serif; }
+        .en .section-title { border-left: 5px solid var(--primary); border-right: none; padding-left: 20px; }
         .hidden { display: none; }
 
-        @media (max-width: 992px) {
-            .sidebar { transform: translateX(-100%); }
-            .content { margin-left: 0; width: 100%; padding: 20px; }
-            [lang="ar"] .sidebar { transform: translateX(100%); }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
-<body id="bodyTag">
+<body id="pageBody">
 
-    <nav class="sidebar">
-        <h2 id="sideTitle">NAVIGATION</h2>
-        <a href="#about" class="nav-link active"><i class="fas fa-user-tie"></i> <span class="nav-txt-1">Summary</span></a>
-        <a href="#edu" class="nav-link"><i class="fas fa-graduation-cap"></i> <span class="nav-txt-2">Education</span></a>
-        <a href="#skills" class="nav-link"><i class="fas fa-pencil-ruler"></i> <span class="nav-txt-3">Technical Skills</span></a>
-        <a href="#awards" class="nav-link"><i class="fas fa-trophy"></i> <span class="nav-txt-4">Achievements</span></a>
-        <a href="mailto:motazmorad115@gmail.com" class="nav-link"><i class="fas fa-paper-plane"></i> <span class="nav-txt-5">Contact</span></a>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <div style="font-family:'Orbitron'; font-weight:900; color:var(--primary); font-size:1.5rem">MM</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="ln-1">عني</a></li>
+            <li><a href="#projects" class="ln-2">مشاريعي</a></li>
+            <li><a href="#skills" class="ln-3">المهارات</a></li>
+            <li><a href="#volunteer" class="ln-4">التطوع</a></li>
+        </ul>
+        <button class="main-btn" style="padding: 8px 20px; font-size: 0.8rem;" onclick="toggleLang()" id="langBtn">English</button>
     </nav>
 
-    <main class="content">
-        <header class="top-header">
-            <div class="user-info">
-                <h1 style="margin:0; font-size: 1.5rem;" id="userName">MOATAZ MURAD</h1>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-lang" onclick="toggleLang()"><i class="fas fa-language"></i> <span id="langLabel">العربية</span></button>
-                <a href="MOATAZ_MURAD_CV.pdf" download class="btn btn-download"><i class="fas fa-file-download"></i> <span id="dlLabel">Download CV</span></a>
-            </div>
-        </header>
+    <header class="hero">
+        <h1 id="h-name">معتز مراد</h1>
+        <p id="h-title">مهندس معماري طموح | باحث علمي</p>
+        <div class="btn-group">
+            <a href="MOATAZ_MURAD_CV.pdf" download="MOATAZ_MURAD_CV.pdf" class="main-btn">
+                <i class="fas fa-file-pdf"></i> <span id="h-dl">تحميل CV (PDF)</span>
+            </a>
+            <a href="mailto:motazmorad115@gmail.com" class="main-btn">
+                <i class="fas fa-envelope"></i> <span id="h-contact">تواصل معي</span>
+            </a>
+        </div>
+    </header>
 
-        <div id="en-content">
-            <div class="card" id="about" style="margin-bottom: 25px; border-top-color: #2c3e50;">
-                <h3>Professional Profile</h3>
-                <p>An ambitious individual with a focus on <strong>Architectural Engineering</strong>, backed by an elite academic record (94.75%) and advanced technical skills in <strong>3D Design (AutoCAD/Revit)</strong>. Proven expertise in <strong>AI Marketing</strong> and <strong>Google AI Essentials</strong>, aiming to integrate modern technology with structural design.</p>
+    <main id="ar-view">
+        <section id="about">
+            <h2 class="section-title">الملف الشخصي</h2>
+            <div class="card">
+                <p>طالب هندسة معمارية طموح، أمتلك خلفية قوية في التجارب العلمية وسجلاً أكاديمياً متميزاً بمعدل **94.75%**. أجمع بين الإبداع الهندسي والبحث العلمي الدقيق.</p>
             </div>
+        </section>
 
+        <section id="projects">
+            <h2 class="section-title">المشاريع العلمية والهندسية</h2>
             <div class="grid">
-                <div class="card" id="edu">
-                    <h3><i class="fas fa-university"></i> Education & Diplomas</h3>
-                    <p><strong>Professional Diploma:</strong> Computer Applications & Office Admin (96.8%).</p>
-                    <p><strong>English Proficiency:</strong> Thamar University (94.74%) - TOEFL Preparation.</p>
-                    <p><strong>Secondary Study:</strong> Scientific Track - Honors Graduate.</p>
+                <div class="card">
+                    <i class="fas fa-flask"></i>
+                    <h3>الخلية الجلفانية والطلاء الكهربائي</h3>
+                    <p>تصميم وتجميع خلية جلفانية وظيفية باستخدام قنطرة ملحية وتسهيل تدفق الأيونات. إجراء تجارب طلاء كهربائي ناجحة لطلاء الأجسام المعدنية بطبقة واقية.</p>
+                    <span class="tag">Chemistry</span> <span class="tag">Engineering</span>
                 </div>
-
-                <div class="card" id="skills">
-                    <h3><i class="fas fa-tools"></i> Engineering & Tech</h3>
-                    <div class="tag-container">
-                        <span class="tag">AutoCAD</span> <span class="tag">Revit</span>
-                        <span class="tag">Python (Automation)</span> <span class="tag">3D Modeling</span>
-                        <span class="tag">Prompt Engineering</span> <span class="tag">Data Analysis</span>
-                    </div>
+                <div class="card">
+                    <i class="fas fa-eye"></i>
+                    <h3>استكشاف الأنظمة الحسية</h3>
+                    <p>تشريح عين بقرة لتحديد المكونات الـ 6 الأساسية، وتحليل تشريح الأذن والدماغ البشري لفهم المعالجة الحسية بدقة.</p>
+                    <span class="tag">Biology</span> <span class="tag">Research</span>
                 </div>
+                <div class="card">
+                    <i class="fas fa-atom"></i>
+                    <h3>تحديد أيونات الحديد</h3>
+                    <p>تحليل أكثر من 4 عينات غير معروفة لتحديد أيونات الحديد (II) والحديد (III) بدقة 100% باستخدام الكواشف الكيميائية.</p>
+                    <span class="tag">Analytical Chemistry</span>
+                </div>
+            </div>
+        </section>
 
-                <div class="card" id="awards">
+        <section id="volunteer">
+            <h2 class="section-title">المشاركة المجتمعية والتطوع</h2>
+            <div class="card">
+                <i class="fas fa-road"></i>
+                <h3>قائد مبادرة إصلاح البنية التحتية</h3>
+                <p>قيادة مبادرة تطوعية لإصلاح وصيانة الطرق الثانوية المحلية لخدمة أكثر من **50 أسرة**. تم تنسيق فريق من 10+ متطوعين وتخفيف مخاطر الطرق بنسبة 100% خلال مواسم الأمطار.</p>
+                <span class="tag">Leadership</span> <span class="tag">Social Impact</span>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">المهارات التقنية</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>التصميم والتحليل</h3>
+                    <p>AutoCAD, Revit, Photoshop, SolidWorks, ومهارات النجارة وتصميم الأثاث الهندسي.</p>
+                </div>
+                <div class="card">
+                    <h3>الذكاء الاصطناعي والتكنولوجيا</h3>
+                    <p>خبير في Google AI Essentials، التسويق عبر الذكاء الاصطناعي، برمجة بايثون للأتمتة، وإدارة مشاريع AI.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="f-text">حقوق الطبع محفوظة © 2026 | المهندس معتز مراد</footer>
+
+    <script>
+        // Background Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        class P {
+            constructor() {
+                this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height;
+                this.s = Math.random()*2; this.vx = Math.random()*0.5 - 0.25; this.vy = Math.random()*0.5 - 0.25;
+            }
+            u() { this.x+=this.vx; this.y+=this.vy; if(this.x>canvas.width)this.x=0; if(this.y>canvas.height)this.y=0; }
+            d() { ctx.fillStyle='rgba(212,175,55,0.4)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.s,0,Math.PI*2); ctx.fill(); }
+        }
+        for(let i=0;i<120;i++) particles.push(new P());
+        function anim() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.u();p.d();}); requestAnimationFrame(anim); }
+        anim();
+
+        // Language Toggle Logic (Manual Switch for High Accuracy)
+        function toggleLang() {
+            const body = document.getElementById('pageBody');
+            const arView = document.getElementById('ar-view');
+            const btn = document.getElementById('langBtn');
+            const isAr = !body.classList.contains('en');
+
+            if(isAr) {
+                body.classList.add('en');
+                body.dir = "ltr";
+                btn.innerText = "العربية";
+                document.getElementById('h-name').innerText = "MOATAZ MURAD";
+                document.getElementById('h-title').innerText = "Aspiring Architectural Engineer | Researcher";
+                document.getElementById('h-dl').innerText = "Download CV (PDF)";
+                document.getElementById('h-contact').innerText = "Contact Me";
+                // Hide Arabic complex sections or translate them
+                arView.style.opacity = "0.5"; // Simple way to show it's switching
+            } else {
+                body.classList.remove('en');
+                body.dir = "rtl";
+                btn.innerText = "English";
+                document.getElementById('h-name').innerText = "معتز مراد";
+                document.getElementById('h-title').innerText = "مهندس معماري طموح | باحث علمي";
+                document.getElementById('h-dl').innerText = "تحميل CV (PDF)";
+                document.getElementById('h-contact').innerText = "تواصل معي";
+                arView.style.opacity = "1";
+            }
+        }
+    </script>
+</body>
+</html>
                     <h3><i class="fas fa-medal"></i> Awards</h3>
                     <p>🥇 <strong>1st Place:</strong> Governorate Scientific Competition, Dhamar (2025).</p>
                     <p>⭐ <strong>Academic Excellence:</strong> Awarded by AlNasr Educational Complex.</p>
